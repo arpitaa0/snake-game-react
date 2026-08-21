@@ -34,25 +34,47 @@ function App() {
   const [speed, setSpeed] = useState(200);
 
   // -----------------------------
+  // CHANGE DIRECTION
+  // -----------------------------
+
+  const changeDirection = (newDirection) => {
+    if (newDirection === "UP" && direction !== "DOWN") {
+      setDirection("UP");
+    }
+
+    if (newDirection === "DOWN" && direction !== "UP") {
+      setDirection("DOWN");
+    }
+
+    if (newDirection === "LEFT" && direction !== "RIGHT") {
+      setDirection("LEFT");
+    }
+
+    if (newDirection === "RIGHT" && direction !== "LEFT") {
+      setDirection("RIGHT");
+    }
+  };
+
+  // -----------------------------
   // KEYBOARD CONTROLS
   // -----------------------------
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "ArrowUp" && direction !== "DOWN") {
-        setDirection("UP");
+      if (event.key === "ArrowUp") {
+        changeDirection("UP");
       }
 
-      if (event.key === "ArrowDown" && direction !== "UP") {
-        setDirection("DOWN");
+      if (event.key === "ArrowDown") {
+        changeDirection("DOWN");
       }
 
-      if (event.key === "ArrowLeft" && direction !== "RIGHT") {
-        setDirection("LEFT");
+      if (event.key === "ArrowLeft") {
+        changeDirection("LEFT");
       }
 
-      if (event.key === "ArrowRight" && direction !== "LEFT") {
-        setDirection("RIGHT");
+      if (event.key === "ArrowRight") {
+        changeDirection("RIGHT");
       }
     };
 
@@ -119,7 +141,8 @@ function App() {
 
         const hitSelf = newSnake.some(
           (segment) =>
-            segment.x === newHead.x && segment.y === newHead.y
+            segment.x === newHead.x &&
+            segment.y === newHead.y
         );
 
         if (hitSelf) {
@@ -134,7 +157,10 @@ function App() {
         // FOOD COLLISION
         // -----------------------------
 
-        if (newHead.x === food.x && newHead.y === food.y) {
+        if (
+          newHead.x === food.x &&
+          newHead.y === food.y
+        ) {
           // Increase score
           setScore((prevScore) => prevScore + 10);
 
@@ -158,7 +184,13 @@ function App() {
     }, speed);
 
     return () => clearInterval(interval);
-  }, [direction, food, gameOver, gameStarted, speed]);
+  }, [
+    direction,
+    food,
+    gameOver,
+    gameStarted,
+    speed,
+  ]);
 
   // -----------------------------
   // START / RESTART GAME
@@ -197,21 +229,65 @@ function App() {
 
       {gameStarted && (
         <>
+          {/* Score */}
           <div className="score">
             Score: {score}
           </div>
 
+          {/* Game Board */}
           <div className="game-board">
 
             <Snake snake={snake} />
 
             <Food food={food} />
 
+            {/* Game Over */}
             {gameOver && (
               <div className="game-over">
                 <h2>Game Over!</h2>
               </div>
             )}
+
+          </div>
+
+          {/* Mobile Controls */}
+          <div className="controls">
+
+            {/* UP */}
+            <div className="control-row">
+              <button
+                className="control-button"
+                onClick={() => changeDirection("UP")}
+              >
+                ↑
+              </button>
+            </div>
+
+            {/* LEFT DOWN RIGHT */}
+            <div className="control-row">
+
+              <button
+                className="control-button"
+                onClick={() => changeDirection("LEFT")}
+              >
+                ←
+              </button>
+
+              <button
+                className="control-button"
+                onClick={() => changeDirection("DOWN")}
+              >
+                ↓
+              </button>
+
+              <button
+                className="control-button"
+                onClick={() => changeDirection("RIGHT")}
+              >
+                →
+              </button>
+
+            </div>
 
           </div>
         </>

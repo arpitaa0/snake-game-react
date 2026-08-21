@@ -1,8 +1,24 @@
-button {
-  padding: 10px 20px;
-  font-size: 18px;
+.control-button {
+  width: 60px;
+  height: 60px;
+  font-size: 25px;
   cursor: pointer;
-  margin-top: 10px;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 10px;
   background-color: white;
+  margin: 5px;
+}
+
+.control-button:active {
+  background-color: lightgray;
+}
+
+.controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.control-row {
+  display: flex;
+  justify-content: center;
 }
