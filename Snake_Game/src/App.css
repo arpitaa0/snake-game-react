@@ -1,0 +1,68 @@
+.game-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.game-board {
+  width: 600px;
+  height: 400px;
+  margin: 20px auto;
+  border: 3px solid black;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+}
+
+/* -----------------------------
+   SNAKE
+----------------------------- */
+
+.snake {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  border: 1px solid black;
+}
+
+/* -----------------------------
+   FOOD
+----------------------------- */
+
+.food {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+/* -----------------------------
+   SCORE
+----------------------------- */
+
+.score {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* -----------------------------
+   GAME OVER
+----------------------------- */
+
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background-color: white;
+
+  padding: 20px 30px;
+
+  border: 2px solid black;
+
+  z-index: 10;
+}
